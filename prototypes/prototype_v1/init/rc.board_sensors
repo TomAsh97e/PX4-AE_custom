@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Start IMU BMI270 (SPI bus 2, Chip Select 1)
+bmi270 -S -b 2 -c 1 start
+
+# Start IMU BMI088 (Składa się z Akcelerometru na CS 2 i Żyroskopu na CS 3)
+bmi088 -A -S -b 2 -c 2 start
+bmi088 -G -S -b 2 -c 3 start
+
+# Start Barometers LPS22HB (I2C bus 2)
+# PX4 domyślnie używa adresu 0x5D, ale może też szukać na 0x5C.
+lps22hb -I -b 2 start
