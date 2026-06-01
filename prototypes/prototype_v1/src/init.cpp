@@ -197,69 +197,69 @@ __EXPORT int board_app_initialize(uintptr_t arg)
 #if !defined(BOOTLOADER)
 
 	/* Power on Interfaces */
-	VDD_3V3_SD_CARD_EN(true);
-	VDD_5V_PERIPH_EN(true);
-	VDD_5V_HIPOWER_EN(true);
-	VDD_3V3_SENSORS_EN(true);
-	VDD_3V3_SPEKTRUM_POWER_EN(true);
+// 	VDD_3V3_SD_CARD_EN(true);
+// 	VDD_5V_PERIPH_EN(true);
+// 	VDD_5V_HIPOWER_EN(true);
+// 	VDD_3V3_SENSORS_EN(true);
+// 	VDD_3V3_SPEKTRUM_POWER_EN(true);
 
-	/* Need hrt running before using the ADC */
+// 	/* Need hrt running before using the ADC */
 
-	px4_platform_init();
+ 	px4_platform_init();
 
-	// Use the default HW_VER_REV(0x0,0x0) for Ramtron
+// 	// Use the default HW_VER_REV(0x0,0x0) for Ramtron
 
-	stm32_spiinitialize();
+// 	stm32_spiinitialize();
 
-	/* Configure the HW based on the manifest */
+// 	/* Configure the HW based on the manifest */
 
-	px4_platform_configure();
+// 	px4_platform_configure();
 
-	/* Wypisanie na sztywno nazwy customowej płytki w logach startowych: */
-	syslog(LOG_INFO, "[boot] AE FC Custom Board initialized\n");
+// 	/* Wypisanie na sztywno nazwy customowej płytki w logach startowych: */
+// 	syslog(LOG_INFO, "[boot] AE FC Custom Board initialized\n");
 
-	/* Configure the Actual SPI interfaces (after we determined the HW version)  */
+// 	/* Configure the Actual SPI interfaces (after we determined the HW version)  */
 
-	stm32_spiinitialize();
+// 	stm32_spiinitialize();
 
-	board_spi_reset(10, 0xffff);
+// 	board_spi_reset(10, 0xffff);
 
-	/* Configure the DMA allocator */
+// 	/* Configure the DMA allocator */
 
-	if (board_dma_alloc_init() < 0) {
-		syslog(LOG_ERR, "[boot] DMA alloc FAILED\n");
-	}
+// 	if (board_dma_alloc_init() < 0) {
+// 		syslog(LOG_ERR, "[boot] DMA alloc FAILED\n");
+// 	}
 
-#  if defined(SERIAL_HAVE_RXDMA)
-	// set up the serial DMA polling at 1ms intervals for received bytes that have not triggered a DMA event.
-	static struct hrt_call serial_dma_call;
-	hrt_call_every(&serial_dma_call, 1000, 1000, (hrt_callout)stm32_serial_dma_poll, NULL);
-#  endif
+// #  if defined(SERIAL_HAVE_RXDMA)
+// 	// set up the serial DMA polling at 1ms intervals for received bytes that have not triggered a DMA event.
+// 	static struct hrt_call serial_dma_call;
+// 	hrt_call_every(&serial_dma_call, 1000, 1000, (hrt_callout)stm32_serial_dma_poll, NULL);
+// #  endif
 
-	/* initial LED state */
-	drv_led_start();
-	led_off(LED_RED);
-	led_on(LED_GREEN); // Indicate Power.
-	led_off(LED_BLUE);
+// 	/* initial LED state */
+// 	drv_led_start();
+// 	led_off(LED_RED);
+// 	led_on(LED_GREEN); // Indicate Power.
+// 	led_off(LED_BLUE);
 
-	if (board_hardfault_init(2, true) != 0) {
-		led_on(LED_RED);
-	}
+// 	if (board_hardfault_init(2, true) != 0) {
+// 		led_on(LED_RED);
+// 	}
 
-	// Ensure Power is off for > 10 mS
-	usleep(15 * 1000);
-	VDD_3V3_SD_CARD_EN(true);
-	usleep(500 * 1000);
+// 	// Ensure Power is off for > 10 mS
+// 	usleep(15 * 1000);
+// 	VDD_3V3_SD_CARD_EN(true);
+// 	usleep(500 * 1000);
 
-#  ifdef CONFIG_MMCSD
-	int ret = stm32_sdio_initialize();
+// #  ifdef CONFIG_MMCSD
+// 	int ret = stm32_sdio_initialize();
 
-	if (ret != OK) {
-		led_on(LED_RED);
-		return ret;
-	}
+// 	if (ret != OK) {
+// 		led_on(LED_RED);
+// 		return ret;
+// 	}
 
-#  endif /* CONFIG_MMCSD */
+// #  endif /* CONFIG_MMCSD */
 
 #endif /* !defined(BOOTLOADER) */
 

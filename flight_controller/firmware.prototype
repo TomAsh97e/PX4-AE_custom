@@ -1,0 +1,13 @@
+{
+    "board_id": 16969,
+    "magic": "PX4FWv1xd",
+    "description": "Firmware for the custom AE FC",
+    "image": "",
+    "build_time": 0,
+    "summary": "Absolut Edge",
+    "version": "0.1",
+    "image_size": 0,
+    "image_maxsize": 1835008,
+    "git_identity": "",
+    "board_revision": 0
+}

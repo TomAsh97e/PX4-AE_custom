@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# Holybro KakuteH7v1 specific board sensors init
+#------------------------------------------------------------------------------
+# Uruchomienie przetwornika ADC (Napięcie i prąd)
+board_adc start
+
+# Uruchomienie czujników IMU na magistrali SPI (-s oznacza SPI)
+bmi088 -s -b 2 -A -R 6 start
+bmi088 -s -b 2 -G -R 6 start
+
+bmi270 -s -b 2 -R 0 start
+
+lps25h -I start

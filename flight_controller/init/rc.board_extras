@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# KakuteH7 specific board extras init
+#------------------------------------------------------------------------------
+
+# DShot telemetry is always on UART7
+mavlink start -x -d /dev/ttyACM0 -m config
+mavlink boot_complete
