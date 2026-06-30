@@ -245,7 +245,7 @@
 
 /* ADC 1 2 3 clock source */
 
-#define STM32_RCC_D3CCIPR_ADCSRC     RCC_D3CCIPR_ADCSEL_PLL2
+#define STM32_RCC_D3CCIPR_ADCSEL     RCC_D3CCIPR_ADCSEL_PLL2
 
 /* FDCAN 1 2 clock source */
 
@@ -309,22 +309,21 @@
 /* LED index values for use with board_userled() */
 
 #define BOARD_LED1        0
-#define BOARD_NLEDS       1
+#define BOARD_LED2        1
+#define BOARD_LED3        2
+#define BOARD_NLEDS       3
 
 #define BOARD_LED_RED     BOARD_LED1
+#define BOARD_LED_GREEN   BOARD_LED2
+#define BOARD_LED_BLUE    BOARD_LED3
 
 /* LED bits for use with board_userled_all() */
 
 #define BOARD_LED1_BIT    (1 << BOARD_LED1)
+#define BOARD_LED2_BIT    (1 << BOARD_LED2)
+#define BOARD_LED3_BIT    (1 << BOARD_LED3)
 
-/* If CONFIG_ARCH_LEDS is defined, the usage by the board port is defined in
- * include/board.h and src/stm32_leds.c. The LEDs are used to encode OS-related
- * events as follows:
- *
- *
- *   SYMBOL                     Meaning                      LED state
- *                                                        Red   Green Blue
- *   ----------------------  --------------------------  ------ ------ ----*/
+
 
 #define LED_STARTED        0 /* NuttX has been started   OFF    OFF   OFF  */
 #define LED_HEAPALLOCATE   1 /* Heap has been allocated  OFF    OFF   ON   */
@@ -334,8 +333,7 @@
 #define LED_SIGNAL         5 /* In a signal handler      N/C    GLOW  N/C  */
 #define LED_ASSERTION      6 /* An assertion failed      GLOW   N/C   GLOW */
 #define LED_PANIC          7 /* The system has crashed   Blink  OFF   N/C  */
-#define LED_IDLE           8 /* MCU is is sleep mode     ON     OFF   OFF  */
-
+#define LED_IDLE           8
 /* Thus if the Green LED is statically on, NuttX has successfully booted and
  * is, apparently, running normally.  If the Red LED is flashing at
  * approximately 2Hz, then a fatal error has been detected and the system
@@ -345,24 +343,24 @@
 /* Alternate function pin selections ************************************************/
 
 
-#define GPIO_USART1_TX   GPIO_USART1_TX_1    /* PA9  */
-#define GPIO_USART1_RX   GPIO_USART1_RX_1    /* PA10 */
+#define GPIO_USART1_TX   GPIO_USART1_TX_2   /* PA9  */
+#define GPIO_USART1_RX   GPIO_USART1_RX_2    /* PA10 */
 
 /* USART3 - GPS */
 #define GPIO_USART3_TX   GPIO_USART3_TX_3   /* PD8  */
 #define GPIO_USART3_RX   GPIO_USART3_RX_3    /* PD9  */
 
 /* UART4 - Lidar */
-#define GPIO_UART4_TX    GPIO_UART4_TX_1     /* PA0  */
-#define GPIO_UART4_RX    GPIO_UART4_RX_1     /* PA1  */
+#define GPIO_UART4_TX    GPIO_UART4_TX_2     /* PA0  */
+#define GPIO_UART4_RX    GPIO_UART4_RX_2     /* PA1  */
 
 /* USART6 - Odbiornik RC */
 #define GPIO_USART6_TX   GPIO_USART6_TX_1    /* PC6  */
 #define GPIO_USART6_RX   GPIO_USART6_RX_1    /* PC7  */
 
 /* UART7 - Telemetria ESC (Tylko odczyt) */
-#define GPIO_UART7_RX    GPIO_UART7_RX_1     /* PE7  */
-#define GPIO_UART7_TX    GPIO_UART7_TX_1     /* PE7  */
+#define GPIO_UART7_RX    GPIO_UART7_RX_3     /* PE7  */
+#define GPIO_UART7_TX    GPIO_UART7_TX_3     /* PE7  */
 
 
 /* UART8 - Companion Computer */

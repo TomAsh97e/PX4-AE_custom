@@ -202,11 +202,12 @@ __EXPORT void stm32_boardinitialize(void)
 __EXPORT int board_app_initialize(uintptr_t arg)
 {
 	/* Power on Interfaces */
+	px4_platform_init();
 	board_control_spi_sensors_power(true, 0xffff);
 
 	/* Need hrt running before using the ADC */
 
-	px4_platform_init();
+
 
 	/* configure SPI interfaces */
 

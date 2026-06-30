@@ -62,10 +62,14 @@
 
 /* LEDs are driven with push open drain to support Anode to 5V or 3.3V */
 
-#define GPIO_nLED_RED        /* PC2 */  (GPIO_OUTPUT|GPIO_OPENDRAIN|GPIO_SPEED_50MHz|GPIO_OUTPUT_SET|GPIO_PORTC|GPIO_PIN2)
+#  define GPIO_nLED_RED         /* PE5   */  (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_50MHz|GPIO_OUTPUT_SET|GPIO_PORTE|GPIO_PIN5)
+#  define GPIO_nLED_GREEN       /* PE6   */  (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_50MHz|GPIO_OUTPUT_SET|GPIO_PORTE|GPIO_PIN6)
+#  define GPIO_nLED_BLUE        /* PE4   */  (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_50MHz|GPIO_OUTPUT_SET|GPIO_PORTE|GPIO_PIN4)
 
-#define BOARD_HAS_CONTROL_STATUS_LEDS      1
-#define BOARD_OVERLOAD_LED     LED_RED
+#  define BOARD_HAS_CONTROL_STATUS_LEDS      1
+#  define BOARD_OVERLOAD_LED     LED_RED
+#  define BOARD_ARMED_STATE_LED  LED_BLUE
+
 
 /*
  * ADC channels
@@ -75,7 +79,7 @@
  */
 
 /* ADC defines to be used in sensors.cpp to read from a particular channel */
-
+#define SYSTEM_ADC_BASE STM32_ADC1_BASE
 #define ADC1_CH(n)                  (n)
 
 /* Define GPIO pins used as ADC N.B. Channel numbers must match below */
@@ -86,15 +90,14 @@
 
 /* Define Channel numbers must match above GPIO pin IN(n)*/
 
-#define ADC_BATTERY_VOLTAGE_CHANNEL        /* PC0 */  ADC1_CH(10)
-#define ADC_BATTERY_CURRENT_CHANNEL        /* PC1 */  ADC1_CH(11)
+#define ADC_BATTERY_CURRENT_CHANNEL        /* PC0 */  ADC1_CH(10)
+#define ADC_BATTERY_VOLTAGE_CHANNEL        /* PC1 */  ADC1_CH(11)
 
 
 #define ADC_CHANNELS \
 	((1 << ADC_BATTERY_VOLTAGE_CHANNEL)       | \
 	 (1 << ADC_BATTERY_CURRENT_CHANNEL))
 
-#define BOARD_ADC_OPEN_CIRCUIT_V     (5.6f)
 
 
 
@@ -146,13 +149,9 @@
  * this board support the ADC system_power interface, and therefore
  * provides the true logic GPIO BOARD_ADC_xxxx macros.
  */
-#define BOARD_ADC_USB_CONNECTED (false)
 
 /* Board never powers off the Servo rail */
 
-#define BOARD_ADC_SERVO_VALID     (1)
-
-#define BOARD_ADC_BRICK1_VALID  (1)
 
 
 

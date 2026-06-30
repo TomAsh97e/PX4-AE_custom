@@ -11,4 +11,4 @@ bmi088 -s -b 2 -G -R 6 start
 
 bmi270 -s -b 2 -R 0 start
 
-lps25h -I start
+lps22hb -X -b 2 start
