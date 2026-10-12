@@ -2,6 +2,12 @@
 
 Custom PX4/NuttX board support for an STM32H743-based flight controller. I brought the custom PCB from firmware bring-up to bench validation and flight testing.
 
+## Hardware
+
+| Front | Back |
+| :---: | :---: |
+| ![Flight controller front](media/flight-controller-front.jpeg) | ![Flight controller back](media/flight-controller-back.jpeg) |
+
 ## My contribution
 
 - Created the PX4 board target and USB bootloader configuration: clock tree, linker and NuttX settings, pin mapping, DMA, startup code and firmware packaging.
