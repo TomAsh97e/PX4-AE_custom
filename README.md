@@ -19,6 +19,16 @@ The selected PX4 baseline did not recognize the pressure sensor fitted to this b
 
 The controller boots PX4 and has been tested on a flying drone. The current PCB revision shows significant in-flight interference/noise, most likely related to PCB layout, power integrity or EMI; the root cause has not yet been confirmed. A PCB revision and renewed validation are required before production use.
 
+## Flight tests
+
+**PID tuning**
+
+https://github.com/user-attachments/assets/d72dcd16-8c58-4aee-8d7e-94d5deac8763
+
+**Outdoor tests**
+
+https://github.com/user-attachments/assets/74d653a1-d538-45a1-9b81-c0f1fd5e79af
+
 ## Build targets
 
 From the PX4-Autopilot root, with this repository under `boards/absoluteedge` and the included LPS22HB changes applied to the PX4 driver tree:
